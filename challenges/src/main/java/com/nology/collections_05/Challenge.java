@@ -13,7 +13,7 @@ public class Challenge {
      * @return Converted List
      */
     public List<String> csvToList(String csv) {
-        return new ArrayList<>() { };
+        return Arrays.asList(csv.split(","));
     }
 
     /**
@@ -25,7 +25,16 @@ public class Challenge {
      * @return Sliced list from start to stop indexes
      */
     public List<String> getSlicedArray(List<String> items, int start, int stop) {
-        return new ArrayList<>() { };
+        ArrayList<String> tempList = new ArrayList<>();
+
+        if(start > items.size() || stop > items.size()){
+            return new ArrayList<>();
+        }
+
+        for (int i = start; i <= stop; i++) {
+            tempList.add(items.get(i));
+        }
+        return tempList;
     }
 
     /**
@@ -36,7 +45,10 @@ public class Challenge {
      * @return List with swapped elements
      */
     public List<String> swapElements(List<String> items, int first, int second) {
-        return new ArrayList<>() { };
+        String temp = items.get(first);
+        items.set(first,items.get(second));
+        items.set(second,temp);
+        return items;
     }
 
     // -------------- INTERMEDIATE --------------
@@ -48,7 +60,13 @@ public class Challenge {
      * @return List of even numbers
      */
     public List<Integer> removeOddNumbers(List<Integer> numbers) {
-        return new ArrayList<>() { };
+        ArrayList<Integer> retVal = new ArrayList<>();
+        numbers.forEach(integer -> {
+            if (integer % 2 == 0) {
+                retVal.add(integer);
+            }
+        });
+        return retVal;
     }
 
     /**
@@ -60,7 +78,19 @@ public class Challenge {
      * @return The distinct/unique items in the list
      */
     public  List<String> getUniqueItems(List<String> items) {
-        return new ArrayList<>() { };
+        ArrayList<String> retVal = new ArrayList<>();
+        //Set<String> strSet = new HashSet<>();
+
+
+        items.forEach(s -> {
+            if (!retVal.contains(s)){
+                retVal.add(s);
+            }
+            //strSet.add(s);
+        });
+
+        //return new ArrayList<>(strSet);
+        return retVal;
     }
 
     /**
@@ -70,7 +100,14 @@ public class Challenge {
      * @return The binary code translation
      */
     public int getBinaryTranslation(char letter) {
-        return -1;
+        HashMap<Character, Integer> binaryMap = new HashMap<>();
+        binaryMap.put('a',01100001);
+        binaryMap.put('b',01100010);
+        binaryMap.put('c',01100011);
+        binaryMap.put('d',01100100);
+        binaryMap.put('e',01100101);
+
+        return binaryMap.getOrDefault(Character.toLowerCase(letter), -1);
     }
 
     // -------------- ADVANCED --------------
@@ -88,6 +125,15 @@ public class Challenge {
      * @return The number of iterations required to find the item
      */
     public int findItem(List<Integer> sortedArr, int searchItem) {
-        return -1;
+        int middle = sortedArr.get(sortedArr.size()/2);
+        if (middle == searchItem) {
+            return 1;
+        } else {
+            if (middle > searchItem) {
+                return findItem(sortedArr.subList(0,sortedArr.size()/2),searchItem) + 1;
+            } else {
+                return findItem(sortedArr.subList(sortedArr.size()/2,sortedArr.size()),searchItem) + 1;
+            }
+        }
     }
 }

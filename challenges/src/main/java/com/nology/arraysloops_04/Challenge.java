@@ -1,5 +1,7 @@
 package com.nology.arraysloops_04;
 
+import java.util.Arrays;
+
 /**
  *   All challenges in this repository are separated into three levels: Foundation, Intermediate, and Advanced.
  *   The expectation is to complete all Foundation level challenges, with Intermediate and upwards pushing your knowledge
@@ -21,7 +23,10 @@ public class Challenge {
      * @return a new array containing the first and last items in the given array e.g. ["Ollie", "Bex"]
      */
     public String[] getFirstAndLast(String[] namesArr) {
-        return new String[0];
+        if (namesArr.length == 0){
+            return new String[0];
+        }
+        return new String[]{namesArr[0], namesArr[namesArr.length-1]};
     }
 
     /***
@@ -31,7 +36,12 @@ public class Challenge {
      * @return an amount e.g. 104
      */
     public int totalAges(int[] agesArr) {
-        return -1;
+        int sum = 0;
+        for (int j : agesArr) {
+            sum += j;
+        }
+        // Arrays.stream(agesArr).sum();
+        return sum;
     }
 
     /***
@@ -41,7 +51,13 @@ public class Challenge {
      * @return Amount of odd numbers e.g. 3
      */
     public int getAmountOfOddNumbers(int[] numbersArr) {
-        return -1;
+        int oddCounter = 0;
+        for (int j: numbersArr) {
+            if (j % 2 == 1){
+                oddCounter++;
+            }
+        }
+        return oddCounter;
     }
 
     // -------------- INTERMEDIATE --------------
@@ -57,7 +73,14 @@ public class Challenge {
      * @return a new array of all numbers between and including the min and max number. e.g. [3, 4, 5, 6]
      */
     public int[] getRange(int min, int max) {
-        return new int[] {};
+        if (min > max) {
+            return new int[0];
+        }
+        int[] retVal = new int[max-min+1];
+        for (int i = 0; i < retVal.length; i++) {
+            retVal[i] = min + i;
+        }
+        return retVal;
     }
 
     /**
@@ -66,7 +89,13 @@ public class Challenge {
      * @return a string with the last name, followed by the first name e.g. "Evans Andy"
      */
     public String swapNames(String fullName) {
-        return "";
+        String[] names = fullName.split(" ");
+        String[] reversedNames = new String[names.length];
+        for (int i = 0; i < names.length; i++) {
+            reversedNames[i] = names[names.length-1-i];
+        }
+        //Collections.reverse(Arrays.asList(names)); Needs to import utils
+        return String.join(" ",reversedNames);
     }
 
     /***
@@ -80,7 +109,13 @@ public class Challenge {
      * @return true or false depending on whether the newScore is the highest value in the array
      */
     public boolean isHighestScore(int[] scoresArr, int newScore) {
-        return false;
+        int maxScore = 0;
+        for (int score: scoresArr) {
+            if (score > maxScore) {
+                maxScore = score;
+            }
+        }
+        return newScore > maxScore;
     }
 
     // -------------- ADVANCED --------------
@@ -103,7 +138,16 @@ public class Challenge {
      * @return The sorted array of numbers e.g. [1, 2, 4, 5, 8]
      */
     public int[] sort(int[] numbersArr) {
-        return new int[] {};
+        for (int i = 0; i < numbersArr.length; i++) {
+            for (int j = 0; j < numbersArr.length - 1 - i; j++) {
+                if (numbersArr[j] > numbersArr[j+1]) {
+                    int temp = numbersArr[j];
+                    numbersArr[j] = numbersArr[j+1];
+                    numbersArr[j+1] = temp;
+                }
+            }
+        }
+        return numbersArr;
     }
 
 }

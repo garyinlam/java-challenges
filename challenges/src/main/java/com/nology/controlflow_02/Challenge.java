@@ -20,7 +20,8 @@ public class Challenge {
      * @return returns a string which is the concatenation of the 2 parameters
      */
     public String getFullName(String firstName, String lastName) {
-        return "";
+
+        return firstName + " " + lastName;
     }
 
     /***
@@ -31,7 +32,8 @@ public class Challenge {
      * @return returns a boolean based on whether the number is between 0 and the range limit
      */
     public boolean isWithinRange(int number, int rangeLimit) {
-        return false;
+
+        return (number >= 0) && (number <= rangeLimit);
     }
 
 
@@ -50,7 +52,21 @@ public class Challenge {
      * @return returns the result of the equation
      */
     public int stringCalculator(int numberOne, int numberTwo, String operator) {
-        return -1;
+        if (numberOne < 0 || numberTwo < 0) {
+            return -1;
+        }
+        switch (operator) {
+            case "*":
+                return numberOne * numberTwo;
+            case "/":
+                return numberOne / numberTwo;
+            case "+":
+                return numberOne + numberTwo;
+            case "-":
+                return numberOne - numberTwo;
+            default:
+                return -1;
+        }
     }
 
 
@@ -70,6 +86,9 @@ public class Challenge {
      * @return If we need to wake up or not based on the conditions above.
      */
     public boolean shouldWakeUp(boolean barking, int hourOfDay) {
+        if (hourOfDay >= 0 && hourOfDay <= 23 && barking) {
+            return (hourOfDay < 8) || (hourOfDay > 22);
+        }
         return false;
     }
 
@@ -83,7 +102,15 @@ public class Challenge {
      * character in the string: a"
      */
     public String getMiddleCharacter(String word) {
-        return "";
+        if (word.contains(" ") || word.length() == 0) {
+            return "Invalid Input";
+        } else {
+            if (word.length() % 2 == 1) {
+                return "" + word.charAt(word.length() / 2);
+            } else {
+                return word.substring((word.length()/2)-1,(word.length()/2)+1);
+            }
+        }
     }
 
 
@@ -99,7 +126,13 @@ public class Challenge {
      * @return returns a string in the format above if the input is valid, or "Invalid value"
      */
     public String printMegaBytesAndKiloBytes(int kiloBytes) {
-        return "";
+        if (kiloBytes < 0) {
+            return "Invalid Value";
+        } else {
+            int mb = kiloBytes / 1024;
+            int rem = kiloBytes % 1024;
+            return kiloBytes + " KB = " + mb + " MB and " + rem + " KB";
+        }
     }
 
     // -------------- ADVANCED --------------
@@ -121,6 +154,19 @@ public class Challenge {
      * @return returns the total amount after x number of years (including the initial investment)
      */
     public String calculateReturn(int initialInvestment, int years, double rateOfInterest) {
-        return "";
+        if (years <= 0) {
+            return "Invalid years";
+        }
+        if (initialInvestment <= 0) {
+            return "Invalid investment";
+        }
+        if (rateOfInterest <= 0 || rateOfInterest >= 1) {
+            return "Invalid rate of interest";
+        }
+        double returns = initialInvestment;
+        for (int i = 0; i < years; i++) {
+            returns = returns * (1+rateOfInterest);
+        }
+        return "You now have " + Math.round(returns);
     }
 }

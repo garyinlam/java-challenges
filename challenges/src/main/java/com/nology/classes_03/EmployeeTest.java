@@ -25,30 +25,30 @@ class EmployeeTest {
     // Testing the Fields and the Constructor
     // You will have to uncomment the tests below once you have added the fields and constructor
 
-//    @Test
-//    void Employee_ValidFields_nameMatches() {
-//        assertEquals("Karen", manager.name);
-//    }
-//
-//    @Test
-//    void Employee_ValidFields_positionMatches() {
-//        assertEquals("Manager", manager.position);
-//    }
-//
-//    @Test
-//    void Employee_ValidFields_ratingMatches() {
-//        assertEquals(10, manager.rating);
-//    }
-//
-//    @Test
-//    void Employee_ValidFields_yearsEmployedMatches() {
-//        assertEquals(10, manager.yearsEmployed);
-//    }
-//
-//    @Test
-//    void Employee_ValidFields_completedDealsMatches() {
-//        assertEquals(400, manager.completedDeals);
-//    }
+    @Test
+    void Employee_ValidFields_nameMatches() {
+        assertEquals("Karen", manager.name);
+    }
+
+    @Test
+    void Employee_ValidFields_positionMatches() {
+        assertEquals("Manager", manager.position);
+    }
+
+    @Test
+    void Employee_ValidFields_ratingMatches() {
+        assertEquals(10, manager.rating);
+    }
+
+    @Test
+    void Employee_ValidFields_yearsEmployedMatches() {
+        assertEquals(10, manager.yearsEmployed);
+    }
+
+    @Test
+    void Employee_ValidFields_completedDealsMatches() {
+        assertEquals(400, manager.completedDeals);
+    }
 
     // Testing isPromotable
 
